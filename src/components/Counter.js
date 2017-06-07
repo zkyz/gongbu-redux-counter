@@ -34,7 +34,7 @@ Counter.defaultProps = {
 	number: 0,
 	color: '#000',
 	onSetColor: () => console.log('set color'),
-	onIncrease: () => console.log(this.props),
+	onIncrease: () => console.log('increase'),
 	onDecrease: () => console.log('decrease')
 }
 
