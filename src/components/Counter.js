@@ -7,14 +7,14 @@ const Counter = ({number, color, onSetColor, onIncrease, onDecrease}) => (
 	     onClick={onIncrease}
 	     onContextMenu={
 		     (e) => {
-		     	  e.preventDefault()
+			     e.preventDefault()
 			     onDecrease()
 		     }
 	     }
 	     onDoubleClick={onSetColor}
 	     style={
 		     {
-		     	backgroundColor: color
+			     backgroundColor: color
 		     }
 	     }
 	>
@@ -23,19 +23,11 @@ const Counter = ({number, color, onSetColor, onIncrease, onDecrease}) => (
 )
 
 Counter.propTypes = {
-	number: PropTypes.number,
-	color:  PropTypes.string,
+	number:     PropTypes.number,
+	color:      PropTypes.string,
 	onSetColor: PropTypes.func,
 	onIncrease: PropTypes.func,
 	onDecrease: PropTypes.func
-}
-
-Counter.defaultProps = {
-	number: 0,
-	color: '#000',
-	onSetColor: () => console.log('set color'),
-	onIncrease: () => console.log('increase'),
-	onDecrease: () => console.log('decrease')
 }
 
 export default Counter

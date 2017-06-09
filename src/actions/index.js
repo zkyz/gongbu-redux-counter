@@ -1,14 +1,23 @@
 import * as ActionTypes from './ActionTypes'
 
-export const increase = () => ({
-	type: ActionTypes.INCREMENT
+export const create = () => ({
+	type: ActionTypes.CREATE
+})
+export const remove = () => ({
+	type: ActionTypes.REMOVE
+})
+export const increase = (index) => ({
+	type: ActionTypes.INCREMENT,
+	index
 })
 
-export const decrease = () => ({
-	type: ActionTypes.DECREMENT
+export const decrease = (index) => ({
+	type: ActionTypes.DECREMENT,
+	index
 })
 
-export const setColor = (color) => ({
+export const setColor = (index, color) => ({
 	type: ActionTypes.SET_COLOR,
-	color
+	color,
+	index
 })
