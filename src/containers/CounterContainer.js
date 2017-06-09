@@ -3,23 +3,22 @@ import * as actions from '../actions/index'
 import CounterList from '../components/CounterList'
 
 const mapStateToProps = (state) => {
-	return ({
-		counter: state.counter,
-		color:   state.color
-	})
+	return state
 }
 
 const mapDispatchToProps = (dispatch) => ({
-	onIncrease: (index) => dispatch(actions.increase(index)),
+	onIncrease: (index) => {
+		dispatch(actions.increase(index))
+	},
 	onDecrease: (index) => dispatch(actions.decrease(index)),
 	onSetColor: (index) => {
 		const rgb = [
-			Math.floor(Math.random() * 256).toString(16),
-			Math.floor(Math.random() * 256).toString(16),
-			Math.floor(Math.random() * 256).toString(16)]
+			('0' + Math.floor(Math.random() * 256).toString(16)).slice(-2),
+			('0' + Math.floor(Math.random() * 256).toString(16)).slice(-2),
+			('0' + Math.floor(Math.random() * 256).toString(16)).slice(-2)
+		]
 
-		rgb.map((i) => i.length === 2 ? i.toString() : '0' + i)
-		dispatch(actions.setColor(index, `#${rgb.join('')}`))
+		dispatch(actions.setColor(index, `#${rgb.reduce((a, b) => a + b)}`))
 	}
 })
 

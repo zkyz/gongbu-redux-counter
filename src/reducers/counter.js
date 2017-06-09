@@ -1,24 +1,63 @@
 import * as ActionTypes from '../actions/ActionTypes'
 import {slice} from 'lodash'
 
-export const init = [0, 1, 2]
-
-const counter = (state = init, action) => {
-	let result
+let initialState = {
+	counter: [{
+		number: 0,
+		color:  '#000'
+	}]
+}
+const counter = (state = initialState, action) => {
+	const i = action.index || 0
 
 	switch (action.type) {
 		case ActionTypes.CREATE:
-			return [...state].push(0)
+			return {
+				counter: [
+					...state.counter,
+					{
+						number: 0,
+						color:  '#000'
+					}
+				]
+			}
 		case ActionTypes.REMOVE:
-			return slice(state, 0, -1)
+			return {
+				counter: [...slice(state.counter, 0, -1)]
+			}
 		case ActionTypes.INCREMENT:
-			result = [...state]
-			result[action.index||0]++
-			return result
+			return {
+				counter: [
+					...slice(state.counter, 0, i),
+					{
+						number: state.counter[i].number + 1,
+						color:  state.counter[i].color
+					},
+					...slice(state.counter, i + 1)
+				]
+			}
 		case ActionTypes.DECREMENT:
-			result = [...state]
-			result[action.index||0]--
-			return result
+			return {
+				counter: [
+					...slice(state.counter, 0, i),
+					{
+						number: state.counter[i] - 1,
+						color:  state.counter[i].color
+					},
+					...slice(state.counter, i + 1)
+				]
+			}
+		case ActionTypes.SET_COLOR:
+			return {
+				counter: [
+					...slice(state.counter, 0, i),
+					{
+						number: state.counter[i].number,
+						color:  action.color
+					},
+					...slice(state.counter, i + 1)
+				]
+			}
 		default:
 			return state
 	}

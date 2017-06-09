@@ -1,30 +1,35 @@
 import * as React from 'react'
 import Counter from './Counter'
 
-const CounterList = ({counter, color, onIncrease, onDecrease, onSetColor}) => (
-	<div className="CounterList">
-		{
-			counter.map(
-				(item, index) => (
-					<Counter key={index}
-					         number={counter[index]}
-					         color={color[index]}
-					         onIncrease={
-						         () => {
-							         onIncrease(index)
-						         }
-					         }
-					         onDecrease={
-						         () => onDecrease(index)
-					         }
-					         onSetColor={
-						         () => onSetColor(index)
-					         }
-					/>
+const CounterList = ({counter, onIncrease, onDecrease, onSetColor}) => {
+	console.log(counter)
+	return (
+		<div className="CounterList">
+			{
+				counter.map(
+					(item, index) => {
+						return (
+							<Counter key={index}
+							         number={item.number}
+							         color={item.color}
+							         onIncrease={
+								         () => {
+									         onIncrease(index)
+								         }
+							         }
+							         onDecrease={
+								         () => onDecrease(index)
+							         }
+							         onSetColor={
+								         () => onSetColor(index)
+							         }
+							/>
+						)
+					}
 				)
-			)
-		}
-	</div>
-)
+			}
+		</div>
+	)
+}
 
 export default CounterList
